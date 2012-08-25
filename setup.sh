@@ -33,4 +33,4 @@ setup vimrc "$HOME/.vimrc"
 setup zshrc "$HOME/.zshrc"
 
 echo "updating Bundles"
-vim -c :BundleInstall\! -c qa\!
+vim +BundleInstall! +qall
