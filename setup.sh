@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 REPO=http://github.com/nudded/dotfiles
 DEST=".dotfiles"
