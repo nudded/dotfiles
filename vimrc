@@ -56,8 +56,11 @@ set backspace=indent,eol,start
 set modelines=0
 set laststatus=2
 set showcmd
-set undofile
-set undoreload=10000
+if v:version > 703
+  set undofile
+  set undoreload=10000
+  set undodir=~/.vim/tmp/undo/     " undo files
+endif
 set splitright
 set splitbelow
 set autoread " auto reload file on change
@@ -105,7 +108,6 @@ noremap H ^
 noremap L g_
 " }}}
 " Backups and undo {{{
-set undodir=~/.vim/tmp/undo/     " undo files
 set backupdir=~/.vim/tmp/backup/ " backups
 set directory=~/.vim/tmp/swap/   " swap files
 set backup                       " enable backups
