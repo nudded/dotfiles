@@ -252,7 +252,7 @@ augroup unrelated_au
   " json == javascript
   au BufNewFile,BufRead *.json set ft=javascript
 
-  au BufRead .vimrc set foldmethod=marker
+  au BufRead {.vimrc,vimrc} set foldmethod=marker
 
 augroup END
 "}}}
