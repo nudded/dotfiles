@@ -19,5 +19,15 @@ function setup() {
     ln -sfn "$PWD/$DEST/$SRC" "$DST"
 }
 
+echo "Setting up Vundle"
+if [[ -d $HOME/.vim/bundle/vundle ]]; then
+  echo "Vundle already installed"
+else
+  git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+fi
+
 setup vimrc "$HOME/.vimrc"
 setup zshrc "$HOME/.zshrc"
+
+echo "updating Bundles"
+vim -c :BundleInstall\! -c qa\!
