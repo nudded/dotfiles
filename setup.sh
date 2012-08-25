@@ -34,3 +34,5 @@ setup zshrc "$HOME/.zshrc"
 
 echo "updating Bundles"
 vim +BundleInstall! +qall
+
+reset
