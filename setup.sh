@@ -16,4 +16,3 @@ function setup() {
 
 setup vimrc "$HOME/.vimrc"
 setup zshrc "$HOME/.zshrc"
-

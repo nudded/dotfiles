@@ -25,6 +25,10 @@ setopt prompt_subst
 PROMPT='[%T] %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%} %(?.✔.✗) '
 export PATH=".:/usr/local/bin/:/usr/local/sbin/:/usr/local/Modules/3.2.9/bin/:$PATH"
 
-eval "$(rbenv init -)"
-eval "$(hub alias -s)"
-alias vim='mvim -v'
+# Mac specific thingies
+platform=$(uname -a)
+if [[ $platform =~ "Darwin" ]]; then
+  eval "$(rbenv init -)"
+  eval "$(hub alias -s)"
+  alias vim='mvim -v'
+fi
