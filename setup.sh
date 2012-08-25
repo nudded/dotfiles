@@ -27,7 +27,7 @@ else
 fi
 
 "Creating tempdirs in .vim"
-mdkir -p $HOME/.vim/tmp/{backup,swap}
+mkdir -p $HOME/.vim/tmp/{backup,swap}
 
 setup vimrc "$HOME/.vimrc"
 setup zshrc "$HOME/.zshrc"
