@@ -2,8 +2,13 @@
 
 REPO=http://github.com/nudded/dotfiles
 DEST=".dotfiles"
-echo "cloning repo: $REPO into dir: $DEST"
-git clone $REPO $DEST
+
+if [[ -d $DEST ]];then
+  cd $DEST && git pull origin master
+else
+  echo "cloning repo: $REPO into dir: $DEST"
+  git clone $REPO $DEST
+fi
 
 function setup() {
     SRC="$1"
