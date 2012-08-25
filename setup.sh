@@ -26,7 +26,7 @@ else
   git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
 fi
 
-"Creating tempdirs in .vim"
+echo "Creating tmp dirs in .vim"
 mkdir -p $HOME/.vim/tmp/{backup,swap}
 
 setup vimrc "$HOME/.vimrc"
