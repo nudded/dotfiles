@@ -218,7 +218,7 @@ augroup END
 augroup ft_nginx
   au!
 
-  au FileType nginx setlocal ts=4, sts=4, sw=4
+  au FileType nginx setlocal ts=4 sts=4 sw=4
 
 augroup END
 " }}}
