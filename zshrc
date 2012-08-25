@@ -22,7 +22,7 @@ colors
 
 
 setopt prompt_subst
-PROMPT='[%T] %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%} %(?.✔.✗) '
+PROMPT='[%T]%{$fg[red]%} %n@%m %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%} %(?.✔.✗) '
 export PATH=".:/usr/local/bin/:/usr/local/sbin/:/usr/local/Modules/3.2.9/bin/:$PATH"
 
 # Mac specific thingies
