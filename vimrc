@@ -19,6 +19,8 @@ Bundle 'eagletmt/ghcmod-vim'
 Bundle 'ujihisa/neco-ghc'
 Bundle 'Shougo/neocomplcache'
 
+Bundle 'nginx.vim'
+
 filetype plugin indent on
 " }}}
 " Leader {{{
@@ -212,6 +214,14 @@ augroup ft_ruby
 
 augroup END
 " }}}
+" Nginx {{{
+augroup ft_nginx
+  au!
+
+  au FileType nginx setlocal ts=4, sts=4, sw=4
+
+augroup END
+" }}}
 " }}}
 " Mappings {{{
 nnoremap <silent> <C-l> :noh<CR><C-L>
@@ -255,6 +265,8 @@ augroup unrelated_au
   au BufNewFile,BufRead *.json set ft=javascript
 
   au BufRead {.vimrc,vimrc} set foldmethod=marker
+
+  au BufRead /etc/nginx/* set ft=nginx
 
 augroup END
 "}}}
