@@ -1,0 +1,10 @@
+[user]
+  name = Toon Willems
+  email = willemstoon@gmail.com
+[color]
+  ui = true
+[core]
+  editor = vim
+[alias]
+  co = checkout
+  unstage = reset HEAD --
