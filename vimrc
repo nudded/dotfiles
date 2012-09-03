@@ -18,9 +18,9 @@ Bundle 'lukerandall/haskellmode-vim'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'ujihisa/neco-ghc'
 Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache-clang'
 
 Bundle 'nginx.vim'
-
 filetype plugin indent on
 " }}}
 " Leader {{{
@@ -71,9 +71,9 @@ set scrolloff=8 "keep 8 lines below/above cursor
 " }}}
 " Colorscheme {{{
 let g:solarized_termcolors=256
-let g:solarized_contrast="high"
+let g:solarized_contrast="normal"
 let g:solarized_underline=0
-let g:solarized_termtrans=1
+let g:solarized_termtrans=0
 syntax enable
 set background=dark
 colorscheme solarized
