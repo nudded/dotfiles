@@ -21,6 +21,8 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neocomplcache-clang'
 
 Bundle 'nginx.vim'
+Bundle 'jayferd/ragel.vim'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 filetype plugin indent on
 " }}}
 " Leader {{{
