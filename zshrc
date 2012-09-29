@@ -22,7 +22,7 @@ colors
 
 setopt prompt_subst
 PROMPT='[%T]%{$fg[red]%} %n@%m %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%} %(?.✔.✗) '
-export PATH=".:/usr/local/bin/:/usr/local/sbin/:$PATH"
+export PATH=".:/usr/local/bin/:/usr/local/sbin/:$HOME/.cabal/bin/:$PATH"
 
 export EDITOR=vim
 
