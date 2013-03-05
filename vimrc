@@ -14,15 +14,16 @@ Bundle 'Shougo/vimshell'
 Bundle 'tpope/vim-commentary'
 Bundle 'altercation/vim-colors-solarized'
 
-Bundle 'lukerandall/haskellmode-vim'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'ujihisa/neco-ghc'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neocomplcache-clang'
 
 Bundle 'nginx.vim'
 Bundle 'jayferd/ragel.vim'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'airblade/vim-gitgutter'
 filetype plugin indent on
 " }}}
 " Leader {{{
@@ -43,7 +44,7 @@ let g:neocomplcache_enable_underbar_completion = 1
 nnoremap <leader><leader> :NERDTreeToggle<esc>
 nnoremap <leader>gt :Gstatus<cr>
 
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '\.hi', '\.o']
 
 let g:Powerline_symbols = 'fancy'
 let g:haddock_browser="open"
@@ -173,15 +174,15 @@ augroup END
 " C {{{
 augroup c_lang
   au!
-  au Filetype cpp setlocal ts=4 sw=4 sts=4
-  au Filetype c setlocal ts=4 sw=4 sts=4
+  au Filetype cpp setlocal ts=2 sw=2 sts=2
+  au Filetype c setlocal ts=2 sw=2 sts=2
 augroup END
 " }}}
 " Haskell {{{
 augroup haskell
   au!
   au Filetype haskell setlocal ts=4 sw=4 sts=4
-  au FileType haskell compiler ghc
+  au FileType haskell setlocal omnifunc=necoghc#omnifunc
 augroup END
 " }}}
 " Java {{{
@@ -235,6 +236,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " spare my fingers in the long run
 inoremap jj <esc>
 inoremap jk <esc>
+inoremap jK jk
 
 " rewrite file with sudo
 cmap w!! w !sudo tee % >/dev/null

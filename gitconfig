@@ -8,3 +8,11 @@
 [alias]
   co = checkout
   unstage = reset HEAD --
+[push]
+  default = current
+[advice]
+  statusHints = false
+[help]
+  autocorrect = 1
+[github]
+	user = nudded

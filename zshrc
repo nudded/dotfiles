@@ -31,9 +31,8 @@ export EDITOR=vim
 platform=$(uname -a)
 if [[ $platform =~ "Darwin" ]]; then
   eval "$(rbenv init -)"
-  eval "$(hub alias -s)"
   alias vim='mvim -v'
-  export CLICOLOR=1
+#  export CLICOLOR=1
 else
   alias ls="ls --color=auto"
   eval $(dircolors)
