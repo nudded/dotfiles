@@ -77,10 +77,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " spare my fingers in the long run
 inoremap jj <esc>
-inoremap jk <esc>
-inoremap jK jk
 
-nnoremap <leader>f :GFiles<cr>
+nnoremap <leader><leader> :GFiles<cr>
 
 " Relative number toggle
 function! ToggleNumberRel()
@@ -101,3 +99,14 @@ let g:rg_command = '
   \ -g "!{.git,node_modules,vendor}/*" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
+" this makes vim so much faster
+set lazyredraw
+set ttyfast
+set noshowcmd
+set regexpengine=1
+
+" nice errors
+let g:airline#extensions#ale#enabled = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
