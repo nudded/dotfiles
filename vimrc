@@ -1,15 +1,15 @@
 call plug#begin('~/.vim/plugged')
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
-
-" Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
-" Plugin outside ~/.vim/plugged with post-update hook
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-surround'
+Plug 'bling/vim-airline'
+Plug 'w0rp/ale'
+Plug 'kchmck/vim-coffee-script'
+Plug 'joukevandermaas/vim-ember-hbs'
+Plug 'tpope/vim-fugitive'
 
 " Initialize plugin system
 call plug#end()
@@ -80,6 +80,8 @@ inoremap jj <esc>
 inoremap jk <esc>
 inoremap jK jk
 
+nnoremap <leader>f :GFiles<cr>
+
 " Relative number toggle
 function! ToggleNumberRel()
   if &relativenumber
@@ -91,3 +93,11 @@ endfunction
 
 " Quickly toggle between relativenumber and number
 noremap <leader>rr :call ToggleNumberRel()<CR>
+
+" ripgrep searching
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,coffee,hbs}"
+  \ -g "!{.git,node_modules,vendor}/*" '
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
