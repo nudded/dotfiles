@@ -3,13 +3,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'kchmck/vim-coffee-script'
 Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'tpope/vim-fugitive'
+Plug 'nanotech/jellybeans.vim'
+Plug 'ntpeters/vim-better-whitespace'
 
 " Initialize plugin system
 call plug#end()
@@ -32,19 +34,19 @@ set splitright
 set splitbelow
 set autoread " auto reload file on change
 set scrolloff=8
+set cursorline
 
-" Undo 
+" Undo
 set undofile
 set undoreload=10000
 set undodir=~/.vim/tmp/undo/
 
 " Color scheme
-let g:solarized_termcolors=256
-let g:solarized_contrast="normal"
-let g:solarized_underline=0
-let g:solarized_termtrans=0
 set background=dark
-colorscheme solarized
+let g:jellybeans_overrides = {
+\    'MatchParen': { 'guifg': 'ffffff', 'guibg': '556779' },
+\}
+colorscheme jellybeans
 
 " Wrapping stuff
 set nowrap
@@ -79,6 +81,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 inoremap jj <esc>
 
 nnoremap <leader><leader> :GFiles<cr>
+nnoremap <leader>b :Buffers<cr>
 
 " Relative number toggle
 function! ToggleNumberRel()
@@ -92,11 +95,13 @@ endfunction
 " Quickly toggle between relativenumber and number
 noremap <leader>rr :call ToggleNumberRel()<CR>
 
+" remove whitespace
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+
 " ripgrep searching
 let g:rg_command = '
-  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-  \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,coffee,hbs}"
-  \ -g "!{.git,node_modules,vendor}/*" '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
@@ -110,3 +115,6 @@ set regexpengine=1
 let g:airline#extensions#ale#enabled = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_linters = {
+\   'coffee': ['coffee'],
+\}
