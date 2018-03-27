@@ -12,6 +12,9 @@ Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'tpope/vim-fugitive'
 Plug 'nanotech/jellybeans.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'thoughtbot/vim-rspec'
 
 " Initialize plugin system
 call plug#end()
@@ -85,11 +88,7 @@ nnoremap <leader>b :Buffers<cr>
 
 " Relative number toggle
 function! ToggleNumberRel()
-  if &relativenumber
-    setlocal number
-  else
-    setlocal relativenumber
-  endif
+  setlocal relativenumber!
 endfunction
 
 " Quickly toggle between relativenumber and number
@@ -118,3 +117,28 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_linters = {
 \   'coffee': ['coffee'],
 \}
+
+" nerdtree
+
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+function! CustomNERDTreeToggle()
+  if IsNERDTreeOpen()
+    NERDTreeClose
+  else
+    if bufname('%') == ''
+      NERDTree
+    else
+      NERDTreeFind
+    endif
+  endif
+endfunction
+
+nnoremap <leader>t :call CustomNERDTreeToggle()<CR>
+
+let g:rspec_command = "terminal bundle exec rspec {spec}"
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader>sf :call RunCurrentSpecFile()<CR>
