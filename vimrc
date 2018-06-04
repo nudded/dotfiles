@@ -6,7 +6,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 Plug 'kchmck/vim-coffee-script'
 Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'tpope/vim-fugitive'
@@ -15,6 +15,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'thoughtbot/vim-rspec'
+Plug 'rust-lang/rust.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -83,12 +84,17 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " spare my fingers in the long run
 inoremap jj <esc>
 
-nnoremap <leader><leader> :GFiles<cr>
+nnoremap <leader><leader> :call GitFilesInDir()<cr>
 nnoremap <leader>b :Buffers<cr>
 
 " Relative number toggle
 function! ToggleNumberRel()
   setlocal relativenumber!
+endfunction
+
+function! GitFilesInDir()
+  let localDir=getcwd()
+  call fzf#vim#gitfiles(localDir)
 endfunction
 
 " Quickly toggle between relativenumber and number
@@ -142,3 +148,6 @@ nnoremap <leader>t :call CustomNERDTreeToggle()<CR>
 let g:rspec_command = "terminal bundle exec rspec {spec}"
 nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader>sf :call RunCurrentSpecFile()<CR>
+
+" rust stuff
+let g:rustfmt_autosave = 1
