@@ -4,9 +4,9 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-endwise'
 Plug 'vim-airline/vim-airline'
-"Plug 'w0rp/ale'
 Plug 'kchmck/vim-coffee-script'
 Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'tpope/vim-fugitive'
@@ -14,8 +14,9 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
-Plug 'thoughtbot/vim-rspec'
+Plug 'janko-m/vim-test'
 Plug 'rust-lang/rust.vim'
+Plug 'kassio/neoterm'
 
 " Initialize plugin system
 call plug#end()
@@ -116,16 +117,6 @@ set ttyfast
 set noshowcmd
 set regexpengine=1
 
-" nice errors
-let g:airline#extensions#ale#enabled = 1
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_linters = {
-\   'coffee': ['coffee'],
-\}
-
-" nerdtree
-
 " Check if NERDTree is open or active
 function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
@@ -144,10 +135,23 @@ function! CustomNERDTreeToggle()
 endfunction
 
 nnoremap <leader>t :call CustomNERDTreeToggle()<CR>
+"neoterm
+let g:neoterm_default_mod = "botright"
 
-let g:rspec_command = "terminal bundle exec rspec {spec}"
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader>sf :call RunCurrentSpecFile()<CR>
+"vim-test setup
+nnoremap <silent> <Leader>s :TestNearest<CR>
+nnoremap <silent> <Leader>sf :TestFile<CR>
+let test#strategy = "neoterm"
 
+" always use system clipboard
+set clipboard=unnamedplus
 " rust stuff
 let g:rustfmt_autosave = 1
+
+"use 2.5.0
+let g:ruby_host_prog = '~/.rbenv/versions/2.5.0/bin/neovim-ruby-host'
+
+"easier tab switching
+noremap <S-D-}> gt
+noremap <S-D-{> gT
+
