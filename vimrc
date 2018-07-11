@@ -1,12 +1,10 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-endwise'
-Plug 'vim-airline/vim-airline'
 Plug 'kchmck/vim-coffee-script'
 Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'tpope/vim-fugitive'
@@ -15,11 +13,13 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'janko-m/vim-test'
-Plug 'rust-lang/rust.vim'
 Plug 'kassio/neoterm'
 
 " Initialize plugin system
 call plug#end()
+
+"Font
+set guifont=Source\ code\ pro:h14
 
 " Leader
 let mapleader=','
@@ -85,17 +85,12 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " spare my fingers in the long run
 inoremap jj <esc>
 
-nnoremap <leader><leader> :call GitFilesInDir()<cr>
+nnoremap <silent> <leader><leader> :GFiles <C-R>=getcwd()<CR><cr>
 nnoremap <leader>b :Buffers<cr>
 
 " Relative number toggle
 function! ToggleNumberRel()
   setlocal relativenumber!
-endfunction
-
-function! GitFilesInDir()
-  let localDir=getcwd()
-  call fzf#vim#gitfiles(localDir)
 endfunction
 
 " Quickly toggle between relativenumber and number
@@ -107,7 +102,7 @@ let g:strip_whitespace_on_save=1
 
 " ripgrep searching
 let g:rg_command = '
-  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" '
+  \ rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --follow --color "always" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
@@ -134,24 +129,36 @@ function! CustomNERDTreeToggle()
   endif
 endfunction
 
-nnoremap <leader>t :call CustomNERDTreeToggle()<CR>
+nnoremap <silent><leader>t :call CustomNERDTreeToggle()<CR>
+nnoremap <silent><leader>tf :NERDTreeFind<CR>
 "neoterm
 let g:neoterm_default_mod = "botright"
+let g:neoterm_size = 10
+let g:neoterm_autoscroll = 1
 
 "vim-test setup
 nnoremap <silent> <Leader>s :TestNearest<CR>
 nnoremap <silent> <Leader>sf :TestFile<CR>
 let test#strategy = "neoterm"
 
-" always use system clipboard
-set clipboard=unnamedplus
-" rust stuff
-let g:rustfmt_autosave = 1
-
-"use 2.5.0
-let g:ruby_host_prog = '~/.rbenv/versions/2.5.0/bin/neovim-ruby-host'
-
 "easier tab switching
-noremap <S-D-}> gt
-noremap <S-D-{> gT
+noremap <C-j> gt
+noremap <C-k> gT
+inoremap <C-j> <esc>gt
+inoremap <C-k> <esc>gT
+
+"window management
+noremap <silent><left>  :3wincmd <<cr>
+noremap <silent><right> :3wincmd ><cr>
+noremap <silent><up>    :3wincmd +<cr>
+noremap <silent><down>  :3wincmd -<cr>
+
+"Ale
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters = {
+\   'coffee': ['coffeelint'],
+\}
+
+"macvim stuff
+set guioptions=
 
