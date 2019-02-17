@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
 Plug 'tpope/vim-endwise'
 Plug 'kchmck/vim-coffee-script'
 Plug 'joukevandermaas/vim-ember-hbs'
@@ -14,12 +13,14 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
+Plug 'rust-lang/rust.vim'
+Plug 'andymass/vim-tradewinds'
 
 " Initialize plugin system
 call plug#end()
 
 "Font
-set guifont=Source\ code\ pro:h14
+set guifont=Source\ code\ pro:h12
 
 " Leader
 let mapleader=','
@@ -27,6 +28,7 @@ let maplocalleader=','
 
 " General options
 set number
+set relativenumber
 set ruler
 set autoindent
 set smartindent
@@ -85,7 +87,9 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " spare my fingers in the long run
 inoremap jj <esc>
 
-nnoremap <silent> <leader><leader> :GFiles <C-R>=getcwd()<CR><cr>
+nnoremap <silent> <leader><leader> :Files <C-R>=getcwd()<CR><cr>
+nnoremap <silent> <leader>f :Rg<cr>
+nnoremap <silent> <leader>F :Rg<cr>
 nnoremap <leader>b :Buffers<cr>
 
 " Relative number toggle
@@ -99,10 +103,8 @@ noremap <leader>rr :call ToggleNumberRel()<CR>
 " remove whitespace
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
 
-" ripgrep searching
-let g:rg_command = '
-  \ rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --follow --color "always" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
