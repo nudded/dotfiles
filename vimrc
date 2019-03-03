@@ -5,7 +5,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'kchmck/vim-coffee-script'
-Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'tpope/vim-fugitive'
 Plug 'nanotech/jellybeans.vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -15,12 +14,17 @@ Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 Plug 'rust-lang/rust.vim'
 Plug 'andymass/vim-tradewinds'
+Plug 'sodapopcan/vim-twiggy'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'mbbill/undotree'
+Plug 'terryma/vim-expand-region'
+Plug 'sheerun/vim-polyglot'
 
 " Initialize plugin system
 call plug#end()
 
 "Font
-set guifont=Source\ code\ pro:h12
+set guifont=Source\ code\ pro:h14
 
 " Leader
 let mapleader=','
@@ -100,6 +104,10 @@ endfunction
 " Quickly toggle between relativenumber and number
 noremap <leader>rr :call ToggleNumberRel()<CR>
 
+" Undotree
+noremap <leader>u :UndotreeToggle<cr>
+noremap <leader>uf :UndotreeFocus<cr>
+
 " remove whitespace
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
@@ -160,6 +168,8 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
 \   'coffee': ['coffeelint'],
 \}
+
+set visualbell t_vb=
 
 "macvim stuff
 set guioptions=
