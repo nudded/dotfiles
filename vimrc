@@ -11,7 +11,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'janko-m/vim-test'
-Plug 'kassio/neoterm'
 Plug 'rust-lang/rust.vim'
 Plug 'andymass/vim-tradewinds'
 Plug 'sodapopcan/vim-twiggy'
@@ -141,15 +140,11 @@ endfunction
 
 nnoremap <silent><leader>t :call CustomNERDTreeToggle()<CR>
 nnoremap <silent><leader>tf :NERDTreeFind<CR>
-"neoterm
-let g:neoterm_default_mod = "botright"
-let g:neoterm_size = 10
-let g:neoterm_autoscroll = 1
 
 "vim-test setup
 nnoremap <silent> <Leader>s :TestNearest<CR>
 nnoremap <silent> <Leader>sf :TestFile<CR>
-let test#strategy = "neoterm"
+let test#strategy = "vimterminal"
 
 "easier tab switching
 noremap <C-j> gt
